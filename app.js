@@ -37,15 +37,15 @@ app.post('/newbag', (req, res) => {
     res.send(productList)    
 })
 
-app.get('/shop' , (req, res) => {
-    console.log(req.query.idPlecaczka)
+app.get('/shop/:idPlecaczka' , (req, res) => {
+    console.log(req.params.idPlecaczka)
     // let i=0; 
     // let wybranyPlecak = null; 
     // while (req.query.idPlecaczka !== productList[i].id) {
     //     wybranyPlecak = productList[i]
     //     i++;
     // }
-    let plecaczek = productList.filter(dupa => dupa.id === req.query.idPlecaczka)
+    let plecaczek = productList.filter(dupa => dupa.id === req.params.idPlecaczka)
     res.send(plecaczek[0])   
 })
 
