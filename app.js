@@ -30,22 +30,23 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(express.static(__dirname+"/public"))
 
-app.get('/chomik', (req, res) => res.send(productList))
+app.get('/shop', (req, res) => res.send(productList))
 
-app.post('/newbag', (req, res) => {
+app.post('/shop', (req, res) => {
     productList.push(req.body)
     res.send(productList)    
 })
 
-app.get('/shop' , (req, res) => {
-    console.log(req.query.idPlecaczka)
+app.get('/shop/:id' , (req, res) => {
+    console.log(req.params.id)
+    const idPlecaczka = req.params.id;
     // let i=0; 
     // let wybranyPlecak = null; 
     // while (req.query.idPlecaczka !== productList[i].id) {
     //     wybranyPlecak = productList[i]
     //     i++;
     // }
-    let plecaczek = productList.filter(dupa => dupa.id === req.query.idPlecaczka)
+    let plecaczek = productList.filter(dupa => dupa.id === idPlecaczka)
     res.send(plecaczek[0])   
 })
 
