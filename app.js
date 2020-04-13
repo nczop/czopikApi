@@ -8,20 +8,20 @@ const app = express()
  let productList = [
     {
         id: uuid.v4(),
-        title: "fronendowka",
-        price: "100 zł",
+        title: "frontenowka1",
+        price: "100",
         photo: "http://localhost:5000/black.png"
     },
     {
         id: uuid.v4(),
-        title: "fronendowka",
-        price: "100 zł",
+        title: "frontenowka2",
+        price: "200",
         photo: "http://localhost:5000/green.png"
     },
     {
         id: uuid.v4(),
-        title: "fronendowka",
-        price: "100 zł",
+        title: "frontenowka3",
+        price: "300",
         photo: "http://localhost:5000/pink.png"
     },
 ]
@@ -46,8 +46,17 @@ app.get('/shop/:id' , (req, res) => {
     //     wybranyPlecak = productList[i]
     //     i++;
     // }
-    let plecaczek = productList.filter(dupa => dupa.id === idPlecaczka)
+    let plecaczek = productList.filter(element => element.id === idPlecaczka)
     res.send(plecaczek[0])   
 })
+
+app.delete('/shop/:id', (req, res) => {
+    const id = req.params.id;
+
+    let newProductList = productList.filter(item => item.id !== id)
+    productList = newProductList;
+    res.send(newProductList)
+});
+
 
 app.listen(5000, () => console.log ('Chomik api dziala'))
